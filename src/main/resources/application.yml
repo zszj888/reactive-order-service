@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:flashorder}
+    username: ${POSTGRES_USER:flashorder}
+    password: ${POSTGRES_PASSWORD:flashorder}
+    pool:
+      initial-size: 10
+      max-size: 50
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+logging:
+  level:
+    com.flashorder: DEBUG
+    org.springframework.data.r2dbc: INFO
