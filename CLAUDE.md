@@ -17,10 +17,14 @@ Reactive order service built with Spring Boot 3.4.5, Kotlin, and WebFlux. Handle
 
 ## Running Infrastructure
 
+Docker Compose is managed automatically by Spring Boot via `spring-boot-docker-compose`. Run the app with:
+
 ```bash
-docker-compose up -d      # Start PostgreSQL 17 + Redis 7
-./scripts/init-stock.sh   # Initialize stock:1 = 100000 (after Redis is up)
+./gradlew bootRun         # Starts PostgreSQL 17 + Redis 7 via Docker Compose, then app
+./scripts/init-stock.sh   # Initialize stock:1 = 100000 (after app is up)
 ```
+
+To stop containers: `docker compose down` (or Ctrl+C stops both app and containers).
 
 ## Architecture
 
@@ -56,6 +60,8 @@ Environment variables for Docker Compose:
 - `REDIS_HOST`, `REDIS_PORT`
 
 Local defaults in `application.yml` connect to `localhost:5432` and `localhost:6379`.
+
+Docker Compose auto-configuration (via `spring-boot-docker-compose`) overrides connection properties when containers are running.
 
 ## Benchmarking
 
