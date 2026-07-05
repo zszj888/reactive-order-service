@@ -31,6 +31,11 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
+    implementation("io.github.oshai:kotlin-logging-jvm:7.0.5")
+
+    implementation("org.zalando:logbook-spring-boot-starter:3.12.1")
+    implementation("org.zalando:logbook-json:3.12.1")
 
     runtimeOnly("org.postgresql:r2dbc-postgresql")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")

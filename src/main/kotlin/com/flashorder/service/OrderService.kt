@@ -5,8 +5,8 @@ import com.flashorder.dto.OrderResponse
 import com.flashorder.entity.Order
 import com.flashorder.exception.SoldOutException
 import com.flashorder.repository.OrderRepository
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.reactive.awaitSingle
-import org.slf4j.LoggerFactory
 import org.springframework.data.redis.core.ReactiveStringRedisTemplate
 import org.springframework.data.redis.core.script.DefaultRedisScript
 import org.springframework.stereotype.Service
@@ -16,7 +16,7 @@ class OrderService(
     private val redisTemplate: ReactiveStringRedisTemplate,
     private val repository: OrderRepository
 ) {
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val log = KotlinLogging.logger {}
 
     private val decrementScript = DefaultRedisScript(
         """
@@ -39,7 +39,7 @@ class OrderService(
         ).awaitSingle()
 
         if (remaining < 0) {
-            log.warn("Sold out: productId={}, requested={}", req.productId, req.quantity)
+            log.warn { "Sold out: productId=${req.productId}, requested=${req.quantity}" }
             throw SoldOutException("Insufficient stock for product ${req.productId}")
         }
 
