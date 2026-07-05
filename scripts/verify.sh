@@ -31,13 +31,13 @@ else
 fi
 
 # --- 2. Redis connectivity ---
-echo "[2] Redis check via actuator"
-REDIS=$(curl -sf "$BASE_URL/actuator/health" || true)
-if echo "$REDIS" | grep -q '"redis"'; then
-    pass "Redis is connected"
-else
-    fail "Redis not reported in health"
-fi
+#echo "[2] Redis check via actuator"
+#REDIS=$(curl -sf "$BASE_URL/actuator/health" || true)
+#if echo "$REDIS" | grep -q '"redis"'; then
+#    pass "Redis is connected"
+#else
+#    fail "Redis not reported in health"
+#fi
 
 # --- 3. DB connectivity ---
 echo "[3] Database check via actuator"

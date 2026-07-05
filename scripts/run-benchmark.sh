@@ -9,6 +9,9 @@ echo "  Running k6 benchmark"
 echo "  Target: $BASE_URL"
 echo "=========================================="
 
-k6 run benchmark/k6.js \
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+k6 run "$PROJECT_ROOT/benchmark/k6.js" \
     -e BASE_URL="$BASE_URL" \
     --summary-trend-stats="avg,min,med,max,p(90),p(95),p(99)"
